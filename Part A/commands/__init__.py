@@ -2,6 +2,7 @@
 
 # Import any modules or sub-packages here
 from commands.print import Print
+from commands.print_scope_variables import PrintScopeVariables
 
 # Define any global variables or constants here
 

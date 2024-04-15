@@ -1,10 +1,15 @@
 from data_types import Integer, Variable
-from commands import Print
+from commands import Print, PrintScopeVariables
 from operators import Add, Sub, Mul, Div, Equal
 
 def interpret(code):
     code = code.strip()
-    if Print.check_prefix(code):
+
+    if PrintScopeVariables.check_prefix(code):
+        if not PrintScopeVariables.check_command(code):
+            raise ValueError("Invalid print_scope_variables statement", code)
+        return PrintScopeVariables()
+    elif Print.check_prefix(code):
         if not Print.check_command(code):
             raise ValueError("Invalid print statement", code)
         internal_expression = Print.extract_expression(code)
