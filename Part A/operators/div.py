@@ -14,7 +14,7 @@ class Div(BinaryExpression):
         return str(self.left) + " / " + str(self.right)
     
     def check_expression(expression):
-        return re.match(Div.pattern, expression.strip()) is not None
+        return re.search(Div.pattern, expression.strip()) is not None
 
     def split(expression):
         return re.split(Div.pattern, expression.strip(), maxsplit = 1)

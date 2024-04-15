@@ -14,7 +14,7 @@ class Mul(BinaryExpression):
         return str(self.left) + " * " + str(self.right)
     
     def check_expression(expression):
-        return re.match(Mul.pattern, expression.strip()) is not None
+        return re.search(Mul.pattern, expression.strip()) is not None
 
     def split(expression):
         return re.split(Mul.pattern, expression.strip(), maxsplit = 1)

@@ -14,7 +14,7 @@ class Add(BinaryExpression):
         return str(self.left) + " + " + str(self.right)
 
     def check_expression(expression):
-        return re.match(Add.pattern, expression.strip()) is not None
+        return re.search(Add.pattern, expression.strip()) is not None
 
     def split(expression):
         return re.split(Add.pattern, expression.strip(), maxsplit = 1)

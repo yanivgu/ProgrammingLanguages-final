@@ -14,7 +14,7 @@ class Equal(BinaryExpression):
         return str(self.left) + " = " + str(self.right)
 
     def check_expression(expression):
-        return re.match(Equal.pattern, expression.strip()) is not None
+        return re.search(Equal.pattern, expression.strip()) is not None
 
     def split(expression):
         return re.split(Equal.pattern, expression.strip(), maxsplit = 1)

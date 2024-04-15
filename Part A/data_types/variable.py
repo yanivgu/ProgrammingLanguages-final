@@ -18,4 +18,4 @@ class Variable(Expression):
         return re.match(Variable.pattern, expression.strip()) is not None
     
     def set_value(self, value):
-        scope.set_value(self.variable_name, value)
+        return scope.set_value(self.variable_name, value)

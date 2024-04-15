@@ -14,7 +14,7 @@ class Sub(BinaryExpression):
         return str(self.left) + " - " + str(self.right)
     
     def check_expression(expression):
-        return re.match(Sub.pattern, expression.strip()) is not None
+        return re.search(Sub.pattern, expression.strip()) is not None
     
     def split(expression):
         return re.split(Sub.pattern, expression.strip(), maxsplit = 1)

@@ -7,3 +7,4 @@ def try_get_value(name):
 
 def set_value(name, value):
     variables[name] = value
+    return value
