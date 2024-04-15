@@ -6,24 +6,26 @@
 
 ### Operations
 The language supports the following arithmetic operations
-- Addition - Adds two integers - `add`
-- Substraction - Substracts one integer from the other - `sub`
-- Multiplication - Multiplies two integers - `mul`
-- Division - Divides one integer by the other - `div`
+- Addition - Adds two integers - `<expression> + <expression>`
+- Substraction - Substracts one integer from the other - `<expression> - <expression>`
+- Multiplication - Multiplies two integers - `<expression> * <expression>`
+- Division - Divides one integer by the other - `<expression> / <expression>`
+- Assignment - Set the value of a variable to the result of an expression - `<variable> = <expression>`
 
-In addition the language supports the following operations
-- `print` - prints a number, or the value of a variable into the console.
+In addition the language supports the following commands
+- `print(<expression>)` - prints the result of the provided expression to the console. If a variable is provided in the expresion, print it's current value.
+- `print_scope_variables()` - prints the defined variables in the program
 
 ### Syntax
-For simplicity and common use, the syntax of the language is:
 - Single line commands - the commands and all the arguments for it must fit on the same line
-- Single command on each line - there cannot be multiple commands on a single line of code
-- Each command is structured as follows: first the command name, followed by a space, and then the arguments for the command separated by spaces
-- Commands, variables, operators and numbers must be split with space for simplicity and visibility
+- Support multiple mathematical operations on a single line
+- Chain assignment - support assigning multiple variables at once
+- Comments are begin with `#` - any suffix is disregarded
 ```
 print(3)
-print variable3
-add 231 123
+my_var = 3 + 2 * 5
+print(my_var)
+my_var = 12 # this is a very useful comment
 ```
 ### Data types
 The language supports only integer data type
