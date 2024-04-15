@@ -21,7 +21,7 @@ For simplicity and common use, the syntax of the language is:
 - Each command is structured as follows: first the command name, followed by a space, and then the arguments for the command separated by spaces
 - Commands, variables, operators and numbers must be split with space for simplicity and visibility
 ```
-print 3
+print(3)
 print variable3
 add 231 123
 ```
@@ -32,3 +32,12 @@ The language supports only integer data type
 - Sequential Execution - Statements are executed in the order they appear in the code, from top to bottom.
 
 ## BNF
+```
+<assignment>      ::= <assignment> "=" <set_statement> | <identifier>=<expression>
+<print_statement> ::= "print("<expression>")"
+<expression>      ::= <expression> <operator> <expression> | <expression> <operator> <basic_expression> | <basic_expression> <operator> <expression> | <basic_expression> <operator> <basic_expression>
+<operator>        ::= "+" | "-" | "*" | "/"
+<basic_expression>::= <identifier> | <number>
+<number>          ::= [0-9]+
+<identifier>      ::= [a-zA-Z][a-zA-Z0-9]*
+```
