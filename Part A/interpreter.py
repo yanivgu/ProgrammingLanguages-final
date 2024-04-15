@@ -1,8 +1,10 @@
 from data_types import Integer, Variable
 from commands import Print, PrintScopeVariables
 from operators import Add, Sub, Mul, Div, Equal
+from comment import *
 
 def interpret(code):
+    code = remove_comments(code)
     code = code.strip()
 
     if PrintScopeVariables.check_prefix(code):

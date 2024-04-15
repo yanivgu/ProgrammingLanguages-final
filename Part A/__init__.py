@@ -1,7 +1,8 @@
 # This is the operators package
 
 # Import any modules or sub-packages here
-from interpreter import interpret
+from interpreter import *
+from comment import *
 
 # Define any global variables or constants here
 
