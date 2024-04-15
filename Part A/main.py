@@ -4,7 +4,10 @@ from operators import Add, Sub, Mul, Div, Equal
 
 def interpret(code):
     code = code.strip()
-    if Add.check_expression(code):
+    if Equal.check_expression(code):
+        parts = Equal.split(code)
+        return Equal(interpret(parts[0]), interpret(parts[1]))
+    elif Add.check_expression(code):
         parts = Add.split(code)
         return Add(interpret(parts[0]), interpret(parts[1]))
     elif Sub.check_expression(code):
@@ -18,6 +21,8 @@ def interpret(code):
         return Div(interpret(parts[0]), interpret(parts[1]))
     elif Integer.check_expression(code):
         return Integer(code)
+    elif Variable.check_expression(code):
+        return Variable(code)
     else:
         raise ValueError("Invalid operator", code)
 
