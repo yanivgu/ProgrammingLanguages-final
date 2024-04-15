@@ -6,7 +6,7 @@ class Print(Expression):
     prefix = r"^print\s*"
 
     def __init__(self, expression):
-        self.expression = Print.extract_expression(expression)
+        self.expression = expression
 
     def evaluate(self):
         print(self.expression.evaluate())
