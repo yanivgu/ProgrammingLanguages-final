@@ -1,0 +1,11 @@
+my_num1 = 3
+my_num_2 = 5
+my_num_3 = 7
+first_sum = my_num1 + my_num_2 # sum of 3 and 5 is 8
+
+
+    print     (      my_num1 + my_num_3     ) # 3 + 7 = 10
+multi = first_sum * my_num_3 # 8 * 7 = 56
+print(multi) # 56
+
+print()
