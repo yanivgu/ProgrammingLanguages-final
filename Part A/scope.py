@@ -1,4 +1,4 @@
-variables = { 0: {}}
+variables = { 0: {"__scope_type": "global"}}
 level = 0
 
 def try_get_value(name):
@@ -16,12 +16,14 @@ def set_value(name, value):
     variables[level][name] = value
     return value
 
-def increment_scope():
+def increment_scope(scope_type):
     level += 1
-    variables[level] = {}
+    variables[level] = {"__scope_type": scope_type}
 
-def decrement_scope():
+def decrement_scope(scope_type):
     if (level == 0):
         raise ValueError("Cannot decrement scope below 0")
+    if (variables[level]["__scope_type"] != scope_type):
+        raise ValueError("Invalid scope type")
     variables.pop(level)
     level -= 1

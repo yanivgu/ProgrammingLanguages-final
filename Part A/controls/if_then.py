@@ -1,4 +1,5 @@
 from abstraction import Expression
+import scope
 import re
 
 class IfThen(Expression):
@@ -10,7 +11,7 @@ class IfThen(Expression):
 
     def evaluate(self):
         if self.condition.evaluate():
-            return True
+            scope.increment_scope("if")
         return False
 
     def __str__(self):
