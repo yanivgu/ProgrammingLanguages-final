@@ -6,6 +6,7 @@ from operators.sub import Sub
 from operators.mul import Mul
 from operators.div import Div
 from operators.equal import Equal
+from operators.comparison_operators import Comparison
 
 # Define any global variables or constants here
 

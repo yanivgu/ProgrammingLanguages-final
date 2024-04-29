@@ -1,4 +1,4 @@
-from abstraction.expression import Expression
+from abstraction import Expression
 import re
 
 class Print(Expression):

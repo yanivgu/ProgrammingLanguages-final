@@ -1,4 +1,4 @@
-from abstraction.expression import BinaryExpression
+from abstraction import BinaryExpression
 import re
 
 class Mul(BinaryExpression):

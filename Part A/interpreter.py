@@ -1,6 +1,6 @@
 from data_types import Integer, Variable
 from commands import Print, PrintScopeVariables
-from operators import Add, Sub, Mul, Div, Equal
+from operators import Add, Sub, Mul, Div, Equal, Comparison
 from comment import *
 
 
@@ -21,6 +21,8 @@ def __interpret(line, recurse_level):
             raise ValueError("Invalid print statement", line)
         internal_expression = Print.extract_expression(line)
         return Print(__interpret(internal_expression, next_recurse_level))
+    elif Comparison.check_expression(line):
+        return Comparison(line)
     elif Equal.check_expression(line):
         parts = Equal.split(line)
         return Equal(__interpret(parts[0], next_recurse_level), __interpret(parts[1], next_recurse_level))
