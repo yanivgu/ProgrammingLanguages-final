@@ -6,13 +6,13 @@ class IfThen(Expression):
     pattern = r"^if\s+.+\s+then\s*$"
     prefix = r"^if\s+"
 
-    def __init__(self, condition):
+    def __init__(self, condition, line_number):
         self.condition = condition
+        self.line_number = line_number
 
     def evaluate(self):
-        if self.condition.evaluate():
-            scope.increment_scope("if")
-        return False
+        condition_state = True if self.condition.evaluate() > 0 else False
+        scope.set_new_scope("if", self.line_number, __condition_state = condition_state)
 
     def __str__(self):
         return "if " + str(self.condition) + " then"

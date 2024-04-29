@@ -11,7 +11,7 @@ class WhileLoop(Expression):
 
     def evaluate(self):
         while self.condition.evaluate():
-            scope.increment_scope("while")
+            scope.set_new_scope("while")
         return False
 
     def __str__(self):

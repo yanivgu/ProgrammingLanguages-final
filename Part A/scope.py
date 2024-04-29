@@ -16,14 +16,19 @@ def set_value(name, value):
     variables[level][name] = value
     return value
 
-def increment_scope(scope_type):
+def set_new_scope(scope_type, line_number, **kwargs):
+    global level
     level += 1
-    variables[level] = {"__scope_type": scope_type}
+    variables[level] = {"__scope_type": scope_type, "__line_number": line_number, **kwargs}
 
-def decrement_scope(scope_type):
+def end_scope(scope_type):
+    global level
     if (level == 0):
         raise ValueError("Cannot decrement scope below 0")
     if (variables[level]["__scope_type"] != scope_type):
         raise ValueError("Invalid scope type")
     variables.pop(level)
     level -= 1
+
+def is_skipping_if():
+    return level > 0 and variables[level]["__scope_type"] == "if" and not variables[level]["__condition_state"]

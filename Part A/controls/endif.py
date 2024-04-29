@@ -7,7 +7,7 @@ class EndIf(Expression):
     prefix = r"^endif\s*"
 
     def evaluate(self):
-        scope.decrement_scope("if")
+        scope.end_scope("if")
 
     def __str__(self):
         return "endif"

@@ -5,11 +5,9 @@ import re
 class Comparison(BinaryExpression):
     pattern = r"==|>=|>|<=|<"
 
-    def __init__(self, expression):
-        parts = Comparison.split(expression)
-        self.left = parts[0]
-        self.right = parts[1]
-        self.operator = re.search(Comparison.pattern, expression.strip())[0]
+    def __init__(self, left, right, operator):
+        super().__init__(left, right)
+        self.operator = operator
 
     def evaluate(self):
         left_value = self.left.evaluate()
@@ -33,3 +31,6 @@ class Comparison(BinaryExpression):
 
     def split(expression):
         return re.split(Comparison.pattern, expression.strip(), maxsplit = 1)
+    
+    def extract_operator(expression):
+        return re.search(Comparison.pattern, expression.strip())[0]

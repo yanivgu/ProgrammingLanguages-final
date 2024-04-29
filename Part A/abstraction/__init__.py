@@ -1,1 +1,1 @@
-from expression import Expression
+from abstraction.expression import Expression, BinaryExpression

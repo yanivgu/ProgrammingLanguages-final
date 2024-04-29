@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Expression:
+class Expression(ABC):
     @abstractmethod
     def evaluate(self):
         pass
