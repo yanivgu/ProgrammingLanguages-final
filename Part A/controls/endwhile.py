@@ -7,7 +7,8 @@ class EndWhile(Expression):
     prefix = r"^endwhile\s*"
 
     def evaluate(self):
-        scope.decrement_scope("while")
+        scope.end_scope("while")
+        return None
 
     def __str__(self):
         return "endwhile"

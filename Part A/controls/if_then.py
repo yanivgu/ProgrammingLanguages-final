@@ -13,6 +13,7 @@ class IfThen(Expression):
     def evaluate(self):
         condition_state = True if self.condition.evaluate() > 0 else False
         scope.set_new_scope("if", self.line_number, __condition_state = condition_state)
+        return None
 
     def __str__(self):
         return "if " + str(self.condition) + " then"

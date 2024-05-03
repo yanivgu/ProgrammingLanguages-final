@@ -8,6 +8,7 @@ class EndIf(Expression):
 
     def evaluate(self):
         scope.end_scope("if")
+        return None
 
     def __str__(self):
         return "endif"

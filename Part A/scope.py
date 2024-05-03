@@ -3,6 +3,7 @@ level = 0
 
 def try_get_value(name):
     for i in range(level, -1, -1):
+        #print(variables[i])
         if name in variables[i]:
             return variables[i][name]
     raise ValueError(str.format("Variable {} not found", name))

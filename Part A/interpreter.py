@@ -28,6 +28,15 @@ def __interpret(line, recurse_level, line_number):
         if not EndIf.check_command(line):
             raise ValueError("Invalid endif statement", line)
         return EndIf()
+    elif WhileLoop.check_prefix(line):
+        if not WhileLoop.check_command(line):
+            raise ValueError("Invalid while_loop statement", line)
+        internal_condition = WhileLoop.extract_condition(line)
+        return WhileLoop(__interpret(internal_condition, next_recurse_level, line_number), line_number)
+    elif EndWhile.check_prefix(line):
+        if not EndWhile.check_command(line):
+            raise ValueError("Invalid endwhile statement", line)
+        return EndWhile()
     elif PrintScopeVariables.check_prefix(line):
         if not PrintScopeVariables.check_command(line):
             raise ValueError("Invalid print_scope_variables statement", line)
