@@ -1,18 +1,6 @@
 import sys
 from interpreter import *
 
-def execute_line(line, line_number):
-    if line.strip() != "exit()":
-        try:
-            result = interpret(line, line_number)
-            if result is not None:
-                result.evaluate()
-            return 1
-        except ValueError as e:
-            print(e, line_number)
-            return -1
-    return 0
-
 def run_as_console():
     line = ""
     return_code = 1

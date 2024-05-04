@@ -26,3 +26,16 @@ while my_num1 < 10
     print(my_num1)
     my_num1 = my_num1 + 1
 endwhile
+
+
+#calculate fibonacci series on n items
+fib_1 = 1
+fib_2 = 1
+n = 20
+while n > 0
+    print(fib_1)
+    temp = fib_1
+    fib_1 = fib_2
+    fib_2 = fib_2 + temp
+    n = n - 1
+endwhile

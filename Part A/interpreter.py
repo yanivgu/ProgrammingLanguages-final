@@ -5,15 +5,42 @@ from operators import *
 from comment import *
 import scope
 
+def execute_while_loop(while_scope: WhileLoop):
+    condition = while_scope.get_condition()
+    lines = while_scope.get_lines()
+    while (condition.evaluate() == 1):
+        for line in lines:
+            execute_line(line, 0)
 
-def interpret(line, line_number):
-    return __interpret(line, 0, line_number)
+def execute_line(line: str, line_number):
+    if line.strip() != "exit()":
+        try:
+            result = __interpret(line, 0, line_number)
+            if result is not None:
+                result.evaluate()
+            return 1
+        except ValueError as e:
+            print(e, line_number)
+            return -1
+    return 0
 
-def __interpret(line, recurse_level, line_number):
+def __interpret(line: str, recurse_level, line_number):
     line = remove_comments(line)
     line = line.strip()
     next_recurse_level = recurse_level + 1
 
+    if scope.is_while_scope():
+        while_scope = scope.get_while_object()
+        is_first_pass = while_scope.is_first_pass()
+        is_endwhile = EndWhile.check_command(line)
+        if is_first_pass and not is_endwhile and recurse_level == 0:
+            while_scope.add_line(line)
+            
+        if is_endwhile:
+            while_scope.end_while_inspection()
+            execute_while_loop(while_scope)
+            return None
+        
     if scope.is_skipping_if():
         if EndIf.check_command(line):
             scope.end_scope("if")

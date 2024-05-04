@@ -31,5 +31,11 @@ def end_scope(scope_type):
     variables.pop(level)
     level -= 1
 
-def is_skipping_if():
+def is_skipping_if() -> bool:
     return level > 0 and variables[level]["__scope_type"] == "if" and not variables[level]["__condition_state"]
+
+def is_while_scope() -> bool:
+    return level > 0 and variables[level]["__scope_type"] == "while"
+
+def get_while_object():
+    return variables[level]["__while_object"]

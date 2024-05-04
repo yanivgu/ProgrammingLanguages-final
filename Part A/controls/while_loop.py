@@ -6,13 +6,14 @@ class WhileLoop(Expression):
     pattern = r"^while\s+.+\s*$"
     prefix = r"^while\s+"
 
-    def __init__(self, condition, line_number):
+    def __init__(self, condition: Expression, line_number: int):
         self.condition = condition
         self.line_number = line_number
+        self.lines = []
 
     def evaluate(self):
         if self.condition.evaluate():
-            scope.set_new_scope("while", self.line_number)
+            scope.set_new_scope("while", self.line_number, __while_object = self, __while_first_pass = True)
         return None
 
     def __str__(self):
@@ -27,3 +28,18 @@ class WhileLoop(Expression):
 
     def check_prefix(expression):
         return re.match(WhileLoop.prefix, expression) is not None
+
+    def is_first_pass(self):
+        return scope.try_get_value("__while_first_pass")
+
+    def end_while_inspection(self):
+        scope.set_value("__while_first_pass", False)
+
+    def add_line(self, line):
+        self.lines.append(line)
+
+    def get_lines(self):
+        return self.lines
+    
+    def get_condition(self) -> Expression:
+        return self.condition
