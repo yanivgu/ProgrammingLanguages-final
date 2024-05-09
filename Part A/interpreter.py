@@ -39,7 +39,11 @@ def __interpret(line: str, recurse_level, line_number):
         if is_endwhile:
             while_scope.end_while_inspection()
             execute_while_loop(while_scope)
-            return None
+            top_while_scope = scope.get_top_while_scope()
+            if top_while_scope is not None and top_while_scope.is_first_pass():
+                for loop_line in while_scope.get_lines():
+                    top_while_scope.add_line(loop_line)
+                top_while_scope.add_line('endwhile')
         
     if scope.is_skipping_if():
         if EndIf.check_command(line):
