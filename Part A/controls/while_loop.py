@@ -13,7 +13,8 @@ class WhileLoop(Expression):
 
     def evaluate(self):
         if self.condition.evaluate():
-            scope.set_new_scope("while", self.line_number, __while_object = self, __while_first_pass = True)
+            scope.set_new_scope("while", self.line_number, __while_object = self)
+            self.in_inspection = True
         return None
 
     def __str__(self):
@@ -30,10 +31,10 @@ class WhileLoop(Expression):
         return re.match(WhileLoop.prefix, expression) is not None
 
     def is_first_pass(self):
-        return scope.try_get_value("__while_first_pass")
+        return self.in_inspection
 
     def end_while_inspection(self):
-        scope.set_value("__while_first_pass", False)
+        self.in_inspection = False
 
     def add_line(self, line):
         self.lines.append(line)

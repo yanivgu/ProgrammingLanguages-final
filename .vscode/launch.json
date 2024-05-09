@@ -1,0 +1,16 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "main",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "C:\\Users\\yanivgu\\Desktop\\Programming languages final submission\\Part A\\main.py",
+            "console": "integratedTerminal",
+            "args": ["-f", "C:\\Users\\yanivgu\\Desktop\\Programming languages final submission\\Part A\\example_file"]
+        }
+    ]
+}
