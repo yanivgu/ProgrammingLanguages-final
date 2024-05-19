@@ -1,4 +1,4 @@
-# Part 1 + 2
+# Part A
 ## Design decisions
 ### Variables
 - Variable length is up to 20 charachters
@@ -11,6 +11,24 @@ The language supports the following arithmetic operations
 - Multiplication - Multiplies two integers - `<expression> * <expression>`
 - Division - Divides one integer by the other - `<expression> / <expression>`
 - Assignment - Set the value of a variable to the result of an expression - `<variable> = <expression>`
+- Comparison - Compare two integers and return 0 if comparison is incorrect, and 1 if comparison is correct.<br>Supported comparisons are: `==`, `<`, `<=`, `>`, `>=`<br>Structure: `<expression> <comparer> <expression>`
+
+### Control flows
+The language supports the following control fllows
+- If statement - conditional statement to execute optional code segment<br>Statement must begin  with `if <condition>`, and end with `endif`
+```
+if <condition>
+    <expression>
+    <expression>
+endif
+```
+- While statement - loop on specific code segment if condition is met.<br>Statement must begin with `while <condition>`, and end with `endwhile`
+```
+while <condition>
+    <expression>
+    <expression>
+endwhile
+```
 
 In addition the language supports the following commands
 - `print(<expression>)` - prints the result of the provided expression to the console. If a variable is provided in the expresion, print it's current value.
@@ -35,10 +53,22 @@ The language supports only integer data type
 
 ## BNF
 ```
-<assignment>      ::= <assignment> "=" <set_statement> | <identifier>=<expression>
-<print_statement> ::= "print("<expression>")"
-<expression>      ::= <expression> <operator> <expression> | <expression> <operator> <basic_expression> | <basic_expression> <operator> <expression> | <basic_expression> <operator> <basic_expression>
-<operator>        ::= "+" | "-" | "*" | "/"
+<while>           ::= while <condition> <newline> <code> <newline> endwhile
+<if>              ::= if <condition> <newline> <code> <newline> endif
+<code>            ::= <code> <newline> <line> | <line>
+<line>            ::= <expression> | <assignment>
+<print_statement> ::= print(<expression>)
+<assignment>      ::= <assignment> = <expression> | 
+                      <identifier> = <expression> 
+<expression>      ::= <expression> <operator> <expression> | 
+                      <expression> <operator> <basic_expression> |
+                      <basic_expression> <operator> <expression> |
+                      <basic_expression> <operator> <basic_expression> |
+                      <basic_expression> |
+                      <condition>
+<condition>       ::= <basic_expression> <comparer> <basic_expression>
+<comparer>        ::= == | < | <= | > | >=
+<operator>        ::= + | - | * | /
 <basic_expression>::= <identifier> | <number>
 <number>          ::= [0-9]+
 <identifier>      ::= [a-zA-Z][a-zA-Z0-9]*
