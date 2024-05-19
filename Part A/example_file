@@ -1,3 +1,19 @@
+n = 0
+i = 1
+while n < 6
+    print(n)
+    n = n + 1
+endwhile
+
+new_num =3
+while new_num < 10
+    print(new_num)
+    if new_num < 5 then
+        print(5555)
+    endif
+    new_num = new_num + 1
+endwhile
+
 my_num1 = 3
 my_num_2 = 5
 my_num_3 = 7
@@ -39,3 +55,12 @@ while n > 0
     fib_2 = fib_2 + temp
     n = n - 1
 endwhile
+
+if 3 < 5 then
+    print(3)
+    if 2 < 3 then
+        print(2)
+    endif
+endif
+
+print(123456789)
